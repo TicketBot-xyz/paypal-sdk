@@ -165,19 +165,6 @@ const paypal = PayPal.create({ ... });
 const plan = await paypal.plans.create(planData);
 ```
 
-### From Custom SDK
-
-```typescript
-// Old way
-const client = new PaypalHttpClient(env);
-const request = new CreateSubscriptionRequest(data);
-const response = await client.execute(request);
-
-// New way
-const paypal = PayPal.create({ ... });
-const subscription = await paypal.subscriptions.create(data);
-```
-
 ## Advanced Configuration
 
 ```typescript
