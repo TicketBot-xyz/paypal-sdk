@@ -1,7 +1,15 @@
 import { PayPalErrorDetail } from './types';
 
+export type PayPalErrorType = 
+  | 'api_error'
+  | 'connection_error'
+  | 'authentication_error'
+  | 'invalid_request_error'
+  | 'idempotency_error'
+  | 'rate_limit_error';
+
 export abstract class PayPalError extends Error {
-  abstract readonly type: string;
+  abstract readonly type: PayPalErrorType;
   
   constructor(message: string) {
     super(message);
@@ -11,7 +19,7 @@ export abstract class PayPalError extends Error {
 }
 
 export class PayPalAPIError extends PayPalError {
-  readonly type = 'api_error';
+  readonly type = 'api_error' as const;
   readonly httpStatusCode: number;
   readonly code: string;
   readonly debugId?: string | undefined;
@@ -33,17 +41,17 @@ export class PayPalAPIError extends PayPalError {
 }
 
 export class PayPalConnectionError extends PayPalError {
-  readonly type = 'connection_error';
-  readonly originalError: any;
+  readonly type = 'connection_error' as const;
+  readonly originalError: unknown;
 
-  constructor(message: string, originalError?: any) {
+  constructor(message: string, originalError?: unknown) {
     super(message);
     this.originalError = originalError;
   }
 }
 
 export class PayPalAuthenticationError extends PayPalError {
-  readonly type = 'authentication_error';
+  readonly type = 'authentication_error' as const;
   
   constructor(message: string = 'Invalid PayPal credentials') {
     super(message);
@@ -51,7 +59,7 @@ export class PayPalAuthenticationError extends PayPalError {
 }
 
 export class PayPalInvalidRequestError extends PayPalError {
-  readonly type = 'invalid_request_error';
+  readonly type = 'invalid_request_error' as const;
   readonly param?: string | undefined;
 
   constructor(message: string, param?: string) {
@@ -61,7 +69,7 @@ export class PayPalInvalidRequestError extends PayPalError {
 }
 
 export class PayPalIdempotencyError extends PayPalError {
-  readonly type = 'idempotency_error';
+  readonly type = 'idempotency_error' as const;
   
   constructor(message: string = 'Idempotency key already used') {
     super(message);
@@ -69,7 +77,7 @@ export class PayPalIdempotencyError extends PayPalError {
 }
 
 export class PayPalRateLimitError extends PayPalError {
-  readonly type = 'rate_limit_error';
+  readonly type = 'rate_limit_error' as const;
   
   constructor(message: string = 'Too many requests made to PayPal API') {
     super(message);

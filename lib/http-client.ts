@@ -41,10 +41,8 @@ export class HttpClient {
   }
 
   private setupInterceptors(): void {
-    // Request interceptor - ensure auth token
     this.client.interceptors.request.use(
       async (config) => {
-        // Skip auth for token requests
         if (!config.url?.includes('/oauth2/token')) {
           await this.ensureValidToken();
           config.headers.Authorization = `Bearer ${this.accessToken}`;
