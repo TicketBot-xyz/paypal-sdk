@@ -1,0 +1,80 @@
+{
+  "name": "@ticketbot/paypal-sdk",
+  "version": "1.0.0",
+  "description": "Stripe-inspired PayPal SDK for Node.js with full TypeScript support",
+  "keywords": [
+    "paypal",
+    "payments",
+    "subscriptions",
+    "billing",
+    "sdk",
+    "typescript",
+    "nodejs",
+    "rest-api"
+  ],
+  "author": "TicketBot <dev@ticketbot.xyz>",
+  "license": "MIT",
+  "homepage": "https://github.com/TicketBot-xyz/paypal-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TicketBot-xyz/paypal-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TicketBot-xyz/paypal-sdk/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.10.0",
+  "main": "./dist/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "build:cjs": "tsc",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint index.ts lib/**/*.ts",
+    "lint:fix": "eslint index.ts lib/**/*.ts --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+} 
