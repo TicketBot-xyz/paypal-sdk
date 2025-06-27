@@ -1,6 +1,6 @@
 {
   "name": "@ticketbot/paypal-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stripe-inspired PayPal SDK for Node.js with full TypeScript support",
   "keywords": [
     "paypal",
@@ -77,4 +77,4 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   }
-} 
+}

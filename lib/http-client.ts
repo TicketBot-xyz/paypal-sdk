@@ -21,8 +21,8 @@ export class HttpClient {
     this.config = { ...HttpClient.defaultConfig, ...config };
     
     const baseURL = this.config.environment === 'live' 
-      ? 'https://api.paypal.com' 
-      : 'https://api.sandbox.paypal.com';
+      ? 'https://api-m.paypal.com' 
+      : 'https://api-m.sandbox.paypal.com';
 
     this.client = axios.create({
       baseURL,
